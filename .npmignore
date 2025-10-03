@@ -1,0 +1,18 @@
+# Source control
+.gitignore
+.github/
+
+# Tests and scripts
+npm-debug.log*
+test/
+scripts/
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+
+# Development artifacts
+coverage/
+.nyc_output/
+.env
+.tmp/
