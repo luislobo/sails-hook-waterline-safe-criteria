@@ -5,7 +5,7 @@ Guard Sails/Waterline queries from silently matching *everything* when unsafe cr
 
 **Key points**
 - Secure by default: once installed the guard is active unless you explicitly disable it.
-- Per-model overrides let you keep legacy behaviour where needed.
+- Per-model overrides let you keep legacy behavior where needed.
 - Per-query bypass is available by including `meta: { allowUndefinedWhere: true }` alongside your criteria.
 
 ## Why this hook exists
@@ -18,7 +18,7 @@ await User.destroy({ where: { status: undefined } });
 
 into `User.destroy({})` and deletes every record.
 
-`sails-hook-waterline-safe-criteria` adds a guard without forking Waterline. The hook is secure by default; you can opt out globally, per model, or on individual queries when you really need the legacy behaviour.
+`sails-hook-waterline-safe-criteria` adds a guard without forking Waterline. The hook is secure by default; you can opt out globally, per model, or on individual queries when you really need the legacy behavior.
 
 ## Requirements
 
@@ -43,7 +43,7 @@ The hook inspects stage-one criteria, so it works with any adapter (sails-disk, 
 npm install sails-hook-waterline-safe-criteria --save
 ```
 
-Sails auto-loads any dependency named `sails-hook-*`. If you prefer to be explicit (or to customise the config key) add the hook to `config/hooks.js`:
+Sails auto-loads any dependency named `sails-hook-*`. If you prefer to be explicit (or to customize the config key) add the hook to `config/hooks.js`:
 
 ```javascript
 module.exports.hooks = {
@@ -55,13 +55,13 @@ module.exports.hooks = {
 
 | Scope | Setting | Effect |
 |-------|---------|--------|
-| Global | `config/models.js` → `rejectUndefinedWhere` (default: `true`) | Secure-by-default. Set to `false` if you intentionally want legacy behaviour. |
+| Global | `config/models.js` → `rejectUndefinedWhere` (default: `true`) | Secure-by-default. Set to `false` if you intentionally want legacy behavior. |
 | Per model | `api/models/Order.js` → `rejectUndefinedWhere: true` | Opt in for specific models only (inherits the global default otherwise). |
 | Hook defaults | `config/waterline-safe-criteria.js` → `{ enabled: false }` | Optional: explicitly opt out of the default guard for the whole app. |
 
 ### Per-query bypass
 
-Legacy code paths can still opt in to the old behaviour (or you can disable the guard globally by setting `config.models.rejectUndefinedWhere = false`). Add a `meta` object to your stage-one criteria when you really need to bypass the undefined check:
+Legacy code paths can still opt in to the old behavior (or you can disable the guard globally by setting `config.models.rejectUndefinedWhere = false`). Add a `meta` object to your stage-one criteria when you really need to bypass the undefined check:
 
 ```javascript
 await Order.destroy({
@@ -97,10 +97,10 @@ Unsafe UPDATE on `order` detected undefined inside WHERE clause. Undefined value
 ### Migration tips
 
 1. **Enable in staging first.** Turn on `rejectUndefinedWhere` globally and run your test suite. Any unsafe queries now fail early.
-2. **Fix or bypass intentionally.** Clean up the criteria or add `meta: { allowUndefinedWhere: true }` where the behaviour is desired.
+2. **Fix or bypass intentionally.** Clean up the criteria or add `meta: { allowUndefinedWhere: true }` where the behavior is desired.
 3. **Roll out per model if needed.** Leave legacy models unguarded (`rejectUndefinedWhere: false`) while protecting everything else.
 
-### Behaviour summary
+### Behavior summary
 
 - Throws when criteria are missing (even with bypass meta).
 - Accepts primary-key shorthand (`Model.find(7)` or `Model.destroy([1,2])`).
@@ -111,13 +111,13 @@ Unsafe UPDATE on `order` detected undefined inside WHERE clause. Undefined value
 ## Example
 
 ```javascript
-// Before (legacy behaviour wipes everything)
+// Before (legacy behavior wipes everything)
 await User.destroy({ where: { status: undefined } });
 
 // After enabling the hook (throws E_UNDEFINED_WHERE)
 await User.destroy({ where: { status: undefined } });
 
-// If you really need the legacy behaviour:
+// If you really need the legacy behavior:
 await User.destroy({ where: { status: undefined }, meta: { allowUndefinedWhere: true } });
 ```
 
@@ -141,7 +141,7 @@ For everything at once, use:
 npm run test:all
 ```
 
-The suites verify the guard on every Waterline helper, nested criteria detection, meta bypass behaviour, and three integration scenarios (guarded app, baseline app, per-model configuration). The adapter matrix re-runs the critical happy/sad paths against real adapters.
+The suites verify the guard on every Waterline helper, nested criteria detection, meta bypass behavior, and three integration scenarios (guarded app, baseline app, per-model configuration). The adapter matrix re-runs the critical happy/sad paths against real adapters.
 
 ## Adapter test matrix
 
