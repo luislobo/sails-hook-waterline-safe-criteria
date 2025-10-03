@@ -2,8 +2,7 @@
 
 Guard Sails/Waterline queries from silently matching *everything* when unsafe criteria slip through (e.g. `undefined` in a `where` clause or calling `Model.destroy()` with no filters).
 
-[![Socket Badge](https://socket.dev/api/badge/npm/package/sails-hook-waterline-safe-criteria)](https://socket.dev/npm/package/
-  sails-hook-waterline-safe-criteria)
+[![Socket Badge](https://socket.dev/api/badge/npm/package/sails-hook-waterline-safe-criteria)](https://socket.dev/npm/package/sails-hook-waterline-safe-criteria)
 
 **Key points**
 - Secure by default: once installed the guard is active unless you explicitly disable it.
