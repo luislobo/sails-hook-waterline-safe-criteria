@@ -10,6 +10,10 @@
     "safety",
     "orm"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luislobo/sails-hook-waterline-safe-criteria.git"
+  },
   "author": "Luis Lobo Borobia",
   "license": "MIT",
   "peerDependencies": {
