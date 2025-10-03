@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: safecriteria
+    ports:
+      - "3316:3306"
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: safecriteria
+    ports:
+      - "5436:5432"
+
+  mongo:
+    image: mongo:6
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27117:27017"

@@ -1,0 +1,41 @@
+{
+  "name": "sails-hook-waterline-safe-criteria",
+  "version": "0.1.0",
+  "description": "Sails hook that guards Waterline queries against undefined where-clause values and missing criteria.",
+  "main": "lib/index.js",
+  "keywords": [
+    "sails",
+    "sails-hook",
+    "waterline",
+    "safety",
+    "orm"
+  ],
+  "author": "Luis Lobo Borobia",
+  "license": "MIT",
+  "peerDependencies": {
+    "sails": ">=1.0.0",
+    "sails-hook-orm": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@sailshq/lodash": "^3.10.7",
+    "chai": "^4.5.0",
+    "flaverr": "^1.10.0",
+    "mocha": "^11.7.4",
+    "sails": "^1.5.15",
+    "sails-disk": "^2.1.2",
+    "sails-hook-orm": "^4.0.3",
+    "sails-mongo": "^2.1.2",
+    "sails-mysql": "^1.0.2",
+    "sails-postgresql": "^5.0.1",
+    "sinon": "^21.0.0"
+  },
+  "scripts": {
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "mocha test/hook.spec.js",
+    "test:integration": "mocha test/integration/integration.spec.js",
+    "test:adapters": "bash scripts/test-adapters.sh",
+    "test:adapters:raw": "mocha test/adapter.spec.js",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:adapters",
+    "test-adapters": "npm run test:adapters"
+  }
+}
